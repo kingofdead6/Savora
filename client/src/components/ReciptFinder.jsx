@@ -222,32 +222,34 @@ export default function RecipeFinder() {
             </div>
 
             {/* Custom input - better keyboard handling */}
-            <div className="flex gap-3">
-              <input
-                type="text"
-                value={customInput}
-                onChange={(e) => setCustomInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    addIngredient(customInput);
-                  }
-                }}
-                placeholder={isArabic ? "أضف مكون غير موجود..." : "Add custom ingredient..."}
-                className="flex-1 px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-emerald-500 text-base sm:text-lg"
-              />
-              <button
-                onClick={() => addIngredient(customInput)}
-                disabled={!customInput.trim()}
-                className={`px-6 py-4 rounded-2xl font-medium text-sm sm:text-base transition ${
-                  customInput.trim()
-                    ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                }`}
-              >
-                {t.addCustom}
-              </button>
-            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+  <input
+    type="text"
+    value={customInput}
+    onChange={(e) => setCustomInput(e.target.value)}
+    onKeyDown={(e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        addIngredient(customInput);
+      }
+    }}
+    placeholder={isArabic ? "أضف مكون غير موجود..." : "Add custom ingredient..."}
+    className="flex-1 px-5 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-emerald-500 text-base sm:text-lg"
+  />
+
+  <button
+    onClick={() => addIngredient(customInput)}
+    disabled={!customInput.trim()}
+    className={`px-6 py-4 rounded-2xl font-medium text-sm sm:text-base transition w-full sm:w-auto ${
+      customInput.trim()
+        ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+    }`}
+  >
+    {t.addCustom}
+  </button>
+</div>
+
           </div>
 
           {/* Number of recipes - better mobile layout */}
