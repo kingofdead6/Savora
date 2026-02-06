@@ -1,37 +1,18 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState ,useRef } from "react";
+// App.jsx
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import { App as CapApp } from "@capacitor/app";
-import { Dialog } from '@capacitor/dialog';
-import RecipeFinder from "./components/chat/ReciptFinder";
-
-
-function App() {
-
+import { Dialog } from "@capacitor/dialog";
+import Welcome from "./components/Welcome";
+import RecipeFinder from "./components/ReciptFinder";
 
 
 function BackButtonHandler() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const historyRef = useRef([]);
-
-  useEffect(() => {
-    historyRef.current.push(location.pathname);
-  }, [location]);
-
   useEffect(() => {
     const handler = CapApp.addListener("backButton", async () => {
-      const currentPath = location.pathname;
-
-      if (historyRef.current.length > 1) {
-        historyRef.current.pop(); 
-        const previousPath = historyRef.current[historyRef.current.length - 1];
-        navigate(previousPath);
-        return;
-      }
-
       const { value } = await Dialog.confirm({
         title: "Exit App",
-        message: "Are you sure you want to exit the app?",
+        message: "Are you sure you want to exit?",
         okButtonTitle: "Yes",
         cancelButtonTitle: "No",
       });
@@ -44,16 +25,19 @@ function BackButtonHandler() {
     return () => {
       handler.remove();
     };
-  }, [navigate, location]);
+  }, []);
 
   return null;
 }
 
+function App() {
   return (
     <Router>
-       <BackButtonHandler />
+      <BackButtonHandler />
+
       <Routes>
-        <Route path="/" element={<RecipeFinder/>} />
+        <Route path="/" element={<Welcome />} />
+        <Route path="/home" element={<RecipeFinder />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

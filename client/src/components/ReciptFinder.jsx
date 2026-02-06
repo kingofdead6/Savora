@@ -1,6 +1,6 @@
 // src/RecipeFinder.jsx
 import { useState, useEffect } from 'react';
-import { PYTHON_API } from "../../../api.js";
+import { PYTHON_API } from "../../api.js";
 
 const bilingualIngredients = [
   { en: "tomato", ar: "طماطم" },
@@ -238,7 +238,7 @@ export default function RecipeFinder() {
               {t.numRecipes}
             </span>
             <div className="flex flex-wrap gap-2">
-              {[1, 2, 3, 4, 5, 6].map(n => (
+              {[1, 2, 3].map(n => (
                 <button
                   key={n}
                   onClick={() => setNumRecipes(n)}

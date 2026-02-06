@@ -1,7 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 
 
 .font-arabic {
   font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+}
+/* index.css or global styles */
+
+/* For WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #10b981; /* emerald-500 */
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #059669; /* emerald-600 */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #10b981 #f1f1f1;
+}
+
+/* Optional: make it look good in dark mode too (if you ever add dark mode) */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #34d399;
+    border-color: #1f2937;
+  }
 }
