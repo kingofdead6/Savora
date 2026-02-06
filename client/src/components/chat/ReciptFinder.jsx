@@ -1,6 +1,6 @@
 // src/RecipeFinder.jsx
 import { useState, useEffect } from 'react';
-import { NODE_API } from "../../../api.js";
+import { PYTHON_API } from "../../../api.js";
 
 const commonIngredients = [
   "tomato", "potato", "onion", "carrot", "zucchini", "eggplant", "bell pepper", "cucumber",
@@ -79,7 +79,7 @@ export default function RecipeFinder() {
 
       const message = `${langPrompt} I have these ingredients: ${ingredientsText}. Suggest recipes.`;
 
-      const res = await fetch(`${NODE_API}/chat`, {
+      const res = await fetch(`${PYTHON_API}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message }),
