@@ -1,6 +1,7 @@
 // src/components/Welcome.jsx
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Logo from "../assets/Logo.png";
 
 export default function Welcome() {
   const navigate = useNavigate();
@@ -22,9 +23,13 @@ export default function Welcome() {
           Smart recipes from what you already have
         </p>
 
-        <div className="w-24 h-24 mx-auto mb-12">
-          <div className="w-full h-full bg-emerald-600 rounded-3xl animate-pulse"></div>
-        </div>
+        <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-10 sm:mb-12">
+  <img
+    src={Logo}
+    alt="Savora Logo"
+    className="w-full h-full object-contain drop-shadow-xl"
+  />
+</div>
 
         <p className="text-gray-600 text-lg mb-8">
           Loading your kitchen assistant...
