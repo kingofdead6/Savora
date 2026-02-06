@@ -4,8 +4,6 @@ import { useEffect } from "react";
 
 export default function Welcome() {
   const navigate = useNavigate();
-
-  // Auto-redirect after 2.5 seconds (or keep the button if you prefer)
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/home");

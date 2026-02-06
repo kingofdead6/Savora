@@ -1,1 +1,1 @@
-export const PYTHON_API="http://localhost:5000"
+export const PYTHON_API="https://savora-6xs2.onrender.com"
