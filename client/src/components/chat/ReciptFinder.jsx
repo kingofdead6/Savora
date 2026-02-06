@@ -1,5 +1,5 @@
 // src/RecipeFinder.jsx
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { PYTHON_API } from "../../../api.js";
 
 const bilingualIngredients = [
@@ -175,7 +175,7 @@ export default function RecipeFinder() {
               )}
             </div>
 
-            {/* Dropdown + Custom input */}
+            {/* Dropdown */}
             <div className="relative mb-6">
               <div
                 className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-between cursor-pointer hover:border-emerald-400 transition"
@@ -215,7 +215,7 @@ export default function RecipeFinder() {
                     addIngredient(customInput);
                   }
                 }}
-                placeholder={isArabic ? "أضف مكون غير موجود في القائمة..." : "Add custom ingredient..."}
+                placeholder={isArabic ? "أضف مكون غير موجود..." : "Add custom ingredient..."}
                 className="flex-1 px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:border-emerald-500 text-lg"
               />
               <button
@@ -268,14 +268,51 @@ export default function RecipeFinder() {
           </button>
         </div>
 
-        {/* Results */}
+        {/* Results / Loading Animation */}
+        {loading && (
+          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 h-[420px] animate-pulse"
+              >
+                <div className="bg-gray-200 h-3" />
+                <div className="p-8">
+                  <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
+                  <div className="h-5 bg-gray-200 rounded w-full mb-6"></div>
+                  <div className="flex gap-6 mb-6">
+                    <div className="h-5 bg-gray-200 rounded w-24"></div>
+                    <div className="h-5 bg-gray-200 rounded w-24"></div>
+                  </div>
+                  <div className="mb-8">
+                    <div className="h-6 bg-gray-200 rounded w-32 mb-4"></div>
+                    <div className="flex flex-wrap gap-3">
+                      {[...Array(5)].map((_, j) => (
+                        <div key={j} className="h-8 bg-gray-200 rounded-full w-28"></div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="h-6 bg-gray-200 rounded w-24 mb-4"></div>
+                    <div className="space-y-3">
+                      {[...Array(4)].map((_, j) => (
+                        <div key={j} className="h-5 bg-gray-200 rounded w-full"></div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {error && (
           <div className="mt-10 text-center text-red-600 bg-red-50 p-6 rounded-2xl border border-red-100">
             {error}
           </div>
         )}
 
-        {recipes.length > 0 && (
+        {recipes.length > 0 && !loading && (
           <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {recipes.map((recipe, i) => (
               <div key={i} className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100">
